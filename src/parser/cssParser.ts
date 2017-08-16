@@ -234,6 +234,7 @@ export class Parser {
 	public _parseStylesheetStatement(): nodes.Node {
 		return this._parseRuleset(false)
 			|| this._parseImport()
+			|| this._parseSupports()
 			|| this._parseMedia()
 			|| this._parsePage()
 			|| this._parseFontFace()
@@ -588,6 +589,14 @@ export class Parser {
 
 		node.setMedialist(this._parseMediaList());
 
+		return this.finish(node);
+	}
+
+	public _parseSupports(): nodes.Node {
+		let node = <nodes.Supports>this.create(nodes.Supports);
+		if (!this.accept(TokenType.AtKeyword, '@supports')) {
+			return null;
+		}
 		return this.finish(node);
 	}
 

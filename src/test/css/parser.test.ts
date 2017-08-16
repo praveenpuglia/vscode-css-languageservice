@@ -47,6 +47,7 @@ suite('CSS - Parser', () => {
 
 	test('Test stylesheet', function () {
 		let parser = new Parser();
+		assertNode('@supports (display: flex){ div {display: flex;} }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('@charset "demo" ;', parser, parser._parseStylesheet.bind(parser));
 		assertNode('body { margin: 0px; padding: 3em, 6em; }', parser, parser._parseStylesheet.bind(parser));
 		assertNode('--> <!--', parser, parser._parseStylesheet.bind(parser));

@@ -76,7 +76,8 @@ export enum NodeType {
 	AtApplyRule,
 	CustomPropertyDeclaration,
 	CustomPropertySet,
-	ListEntry
+	ListEntry,
+	Supports
 }
 
 export enum ReferenceType {
@@ -1687,3 +1688,13 @@ export class ParseErrorCollector implements IVisitor {
 	}
 }
 
+export class Supports extends Node {
+
+	constructor(offset: number, length: number) {
+		super(offset, length);
+	}
+
+	public get type(): NodeType {
+		return NodeType.Supports;
+	}
+}
